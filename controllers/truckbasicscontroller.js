@@ -6,7 +6,7 @@ const sequelize = require('../db');
 const UsersModel = require('../models/users');
 
 //get/read all
-router.get("/getalltrucks", async(req, res) => {        // new project route >>
+router.get("/getalltrucks", middleware.validateSession, async(req, res) => {        // new project route >>
     
     try {
         const mytrucks = await TruckBasicsModel.findAll();
@@ -21,7 +21,7 @@ router.get("/getalltrucks", async(req, res) => {        // new project route >>
  
 
 //get all trucks that match a user id
-router.get("/getmytrucks", async(req, res) => {     
+router.get("/getmytrucks", middleware.validateSession, async(req, res) => {     
     
     const {id} = req.user;
     console.log(req.user.id)
@@ -32,7 +32,7 @@ router.get("/getmytrucks", async(req, res) => {
                 //column value   //cell value
         });
  
-        res.status(200).json(truckId); 
+        res.status(200).json({truckId}); 
     }  catch(err){
         res.status(500).json({
             error: err,    
@@ -44,11 +44,9 @@ router.get("/getmytrucks", async(req, res) => {
 //get/read by id
 router.get("/getonefeature/:id"), middleware.validateSession, async(req, res) => {
 
-   try{
+   try {
        const Truck = await TruckBasicsModel.findOne({
         //where: {req.params  }
-
-
     });
        
        res.status(201).json({
@@ -89,10 +87,10 @@ router.get("/getonefeature/:id"), middleware.validateSession, async(req, res) =>
 router.put("/update/:id", middleware.validateSession, async(req, res) => { 
     const {
                truckType, numberAxles, engine, fuelTankSize, batteries, batteryCharging, alternator, electrical, electricalDisplaySwitch, wheelType, tires, suspension, shocks, brakes, notes
-                         } = req.body.truck;
+                         } = req.body
     
              try{
-                            /*not sure*/
+                           
                  const truckUpdated = await TruckBasicsModel.update({truckType: truckType, numberAxles: numberAxles, engine: engine, fuelTankSize: fuelTankSize, batteries: batteries, batteryCharging: batteryCharging, alternator: alternator, electrical: electrical, electricalDisplaySwitch: electricalDisplaySwitch, wheelType: wheelType, tires: tires, suspension: suspension, shocks: shocks, brakes: brakes, notes: notes},
                  {where: {id: req.params.id}}
                  )
@@ -136,9 +134,9 @@ router.put("/update/:id", middleware.validateSession, async(req, res) => {
 
 //for users submitting entire order at end with submit button
 router.post("/create", middleware.validateSession, async (req, res) => {
-//const{id} = req.user
+
 const userId = req.user.id
-//console.log(userId, id)
+
 
     const {
       truckType, numberAxles, engine, fuelTankSize, batteries, batteryCharging, alternator, electrical, electricalDisplaySwitch, wheelType, tires, suspension, shocks, brakes, notes,// userId
@@ -169,7 +167,7 @@ try {
 
 //delete by id 
  /*admin to NOT delete a whole truck spec area, just ONE small feature */
- router.delete("truckbasics/delete/:id", middleware.validateSession, async (req,res) => {
+ router.delete('/delete/:id', middleware.validateSession, async (req,res) => {
           try{
              const locatedTruckFeature = await TruckBasicsModel.destroy({
                   where:  {id: req.params.id}

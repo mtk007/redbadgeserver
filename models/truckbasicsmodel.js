@@ -9,64 +9,64 @@ const TruckBasicsModel = db.define("truckbasics", {
   //   allowNull: false,
   // },
   truckType: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   numberAxles: {
-    type: DataTypes.INTEGER,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.INTEGER,  
     allowNull: false,
   },
 
   engine: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   fuelTankSize: {
-    type: DataTypes.INTEGER,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.INTEGER,  
     allowNull: false,
   },
   batteries: {
-    type: DataTypes.INTEGER,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.INTEGER,  
     allowNull: false,
   },
   batteryCharging: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   alternator: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   electrical: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   electricalDisplaySwitch: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   wheelType: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   tires: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   suspension: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   shocks: {
-    type: DataTypes.INTEGER,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.INTEGER,  
     allowNull: false,
   },
   brakes: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   notes: {
-    type: DataTypes.STRING,  //NEED MULTIPLE DATA TYPES
+    type: DataTypes.STRING,  
     allowNull: true,
   },
 

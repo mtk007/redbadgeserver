@@ -4,6 +4,7 @@ const router = Express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { UniqueConstraintError } = require('sequelize/lib/errors');
+const middleware = require('../middleware');
 
 
 router.post("/register", async (req, res) => {
@@ -77,6 +78,44 @@ router.post("/login", async (req, res) => {
         res.status(500).json({
             message: `Failed to log in ${err}` 
         })
+    }
+});
+
+
+router.delete("/delete/:id", middleware.validateSession, async(req, res) => {
+
+    //const {email, password, role} = req.body.user;
+   
+    try{
+                    //why doesn't await go here
+        const User = await UsersModel.destroy({
+            where: {id: req.params.id}
+            // email,
+            // password: bcrypt.hashSync(password, 15),
+            // role
+        });
+
+
+    const token = jwt.sign({ id: User.id, role: User.admin }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 168}) //change 168 back to 24 
+        
+
+        res.status(201).json({
+            message: "Successfully deleted user",
+            user: User,
+            //role,
+            sessionToken: token
+        });
+    } catch (err){
+        if(err instanceof UniqueConstraintError){
+            res.status(409).json({
+                message: "This user cannot be deleted!"
+            });
+        } else{
+            res.status(500).json({
+                message: `Failed to delete user ${err}`
+            
+            });
+        }
     }
 });
 
