@@ -1,6 +1,8 @@
-const validateSession = require('./validate-jwt')
+const validateSession = require('./validateSession')
 
 module.exports = {
-    headers: require('./headers'),
-    validateSession: require('./validate-jwt'),
+//should BELOW be       headers: require ('./headers'), INSTEAD??
+    CORS: require('./headers'),
+    validateSession: require('./validateSession'),
+    validateAdmin: require('./validate-admin')
 }

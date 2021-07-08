@@ -1,10 +1,10 @@
-require('dotenv').config();
-const jwt = require("jsonwebtoken");
-const {UsersModel} = require("../models");
-
-const validateJWT = async (req, res, next) => {
+//require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const UsersModel  = require('../models/users');
+ 
+const validateSession = async (req, res, next) => {
     if (req.method == "OPTIONS") {
-        next();
+        return next()
     } else if (
         req.headers.authorization
     ) {
@@ -27,9 +27,9 @@ const validateJWT = async (req, res, next) => {
         } else {
             res.status(401).send({message: "Invalid token"});
         }
-    } else{
+    } else {
         res.status(403).send({message: "Forbidden"});
     }
 };
 
-module.exports = validateJWT;
+module.exports = validateSession;
