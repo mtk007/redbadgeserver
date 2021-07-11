@@ -6,3 +6,5 @@ To run server locally:
 npm nodemon OR npx nodemon (mac)
 
 port: 911
+
+restart server in terminal: rs 
