@@ -1,5 +1,3 @@
-require ('dotenv').config()//optional per Jason
-
 const {Sequelize} = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     ssl: process.env.ENVIRONMENT === 'production'
