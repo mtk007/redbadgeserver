@@ -5,6 +5,45 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { UniqueConstraintError } = require('sequelize/lib/errors');
 const middleware = require('../middleware');
+const { validate } = require('../db');
+const PumpFeaturesModel = require('../models/pumpfeaturesmodel');
+const TruckBasicsModel = require('../models/truckbasicsmodel');
+
+//admin delete
+router.delete('/delete/admin/:userId',
+middleware.validateSession, async (req, res) => {
+    const { userId } = req.params
+if (req.user.role === 'admin') {
+    try {
+        const locatedPumpFeature = await PumpFeaturesModel.destroy({
+            where: { userId: userId }
+        })
+
+        const locatedTruckFeature = await TruckBasicsModel.destroy({
+            where: { userId: userId}
+        })
+
+        const locatedUser = await UsersModel.destroy({
+            where: { id: userId }
+        })
+
+        res.status(200).json({
+            message: 'User successfuly deleted.',
+            deletedUser: locatedUser,
+            deletedTruck: locatedTruckFeature ==0? `no features to delete` :locatedTruckFeature,
+            deletedPump: locatedPumpFeature ==0? `no features to delete`:locatedPumpFeature
+        })
+    } catch(err){
+        res.status(500).json({
+            message: `Failed to delete User: ${err}`
+        })
+    }
+    } else {
+        res.status(401).json({
+            message: `Unauth`
+        })
+    }
+})
 
 
 router.post("/register", async (req, res) => {
