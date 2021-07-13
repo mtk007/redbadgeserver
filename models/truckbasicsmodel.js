@@ -26,7 +26,7 @@ const TruckBasicsModel = db.define("truckbasics", {
     allowNull: false,
   },
   batteries: {
-    type: DataTypes.INTEGER,  
+    type: DataTypes.STRING,  
     allowNull: false,
   },
   batteryCharging: {
