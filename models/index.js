@@ -1,8 +1,8 @@
 const db = require('../db');
 
-const UsersModel = require('../models/users');
-const TruckBasicsModel = require('../models/truckbasicsmodel');
-const PumpFeaturesModel = require('../models/pumpfeaturesmodel');
+const UsersModel = require('./users');
+const TruckBasicsModel = require('./truckbasicsmodel');
+const PumpFeaturesModel = require('./pumpfeaturesmodel');
 
 
 UsersModel.hasMany(TruckBasicsModel);

@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db");
 
-const PumpFeaturesModel = db.define("pump", {
+const PumpFeaturesModel = db.define("pumpfeatures", {
   // pumpId: {
   //   type: DataTypes.UUID,
   //   primaryKey: true,

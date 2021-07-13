@@ -3,7 +3,7 @@ const PumpFeaturesModel = require('../models/pumpfeaturesmodel');
 const middleware = require('../middleware');
 const validateSession = require('../middleware/validateSession');
 const sequelize = require('../db');
-const UsersModel = require('../models/users');
+const UsersModel = require('../models');
 
 // router.get('/pumpfeatures', middleware.validateSession, async (req,res) => {
 //     res.send('Hey!! This is the pump features controller!')
