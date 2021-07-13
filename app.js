@@ -27,7 +27,7 @@ app.use('/pumpfeatures', controllers.pumpfeaturescontroller);
 
 
 dbConnection.authenticate()
-    .then(() => dbConnection.sync({force:true}))
+    .then(() => dbConnection.sync({/*force:true*/}))
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log(`[Server]: Dispatch is listening on endpoint 911.`);
