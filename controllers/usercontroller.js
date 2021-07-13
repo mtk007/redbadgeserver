@@ -82,13 +82,13 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    let {email, password, role} = req.body.user;
+    let {email, password} = req.body.user;
 
     try{
          const User = await UsersModel.findOne({  
             where: {
                 email: email,
-                role: role 
+             
             },
         })
         if(User){
@@ -105,12 +105,12 @@ router.post("/login", async (req, res) => {
             })
 
         } else{
-            res.status(401).json({
-                message: "Incorrect email or password"
+            res.status(403).json({
+                message: "Incorrect password"
             })
         }} else{
             res.status(401).json({
-                message: "Incorrect email or password"
+                message: "Incorrect email "
             })
         }
     } catch(err){
