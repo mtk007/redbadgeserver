@@ -63,7 +63,7 @@ const TruckBasicsModel = db.define("truckbasics", {
   },
   brakes: {
     type: DataTypes.STRING,  
-    allowNull: false,
+    allowNull: true,
   },
   notes: {
     type: DataTypes.STRING,  
