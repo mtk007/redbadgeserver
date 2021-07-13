@@ -88,8 +88,7 @@ router.post("/login", async (req, res) => {
          const User = await UsersModel.findOne({  
             where: {
                 email: email,
-                //password: password,
-                //role: role 
+                role: role 
             },
         })
         if(User){
